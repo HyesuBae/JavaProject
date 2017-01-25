@@ -1,0 +1,48 @@
+<html>
+<head>
+	<title>JSON Data</title>
+</head>
+<body>
+	<div class="wrapper">
+	<div class="profile">
+		<table id="jsondata" border="2" style="word-wrap:break-word;table-layout:fixed">
+			<thead>
+				<th>App Image</th>
+				<th>Title</th>
+				<th>subTitle</th>
+				<th>description</th>
+				<th>rating</th>
+				<th>imgUrl</th>
+				<th>link</th>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+	</div>
+	</div>
+
+	<script type="text/javascript" src="/home/hyesu/Downloads/jquery-3.1.1.min.js"></script>
+	<script>
+
+		$(function(){
+			var apps = [];
+
+			$.getJSON('./json/appList.json', function(data){
+				$.each(data, function(i, f){
+					var tblRow = "<tr>"
+								+"<td><img src=\"" + f.imgLocalPath + "\"/></td>"
+								+"<td>" + f.title + "</td>"
+								+"<td>" + f.subTitle + "</td>"
+								+"<td>" + f.description + "</td>" 
+								+"<td>" + f.rating + "</td>" 
+								+"<td>" + f.imgUrl + "</td>"
+								+"<td><a href=\"" + f.link + "\">Link click</a></td>"
+								+"</tr>"
+							$(tblRow).appendTo("#jsondata tbody");
+				});
+			});
+		});
+	</script>
+
+</body>
+</html>
